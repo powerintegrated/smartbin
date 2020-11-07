@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+        <head>
+            <title> Smart Water Mgt</title>
+            <div class="top">
+            <h1 class="title">  Smart Water Management System</h1>
+            </div>
+               <style>
+                  .top
+                   {
+                     border:0px solid green;
+                     width:100%;
+                     height:100px;
+                     border-radius:20px;
+                  }
+                  body {
+  background-image: url('water.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+     }
+                 .title
+                   {
+                     text-align:center;
+                     color:black
+                   }
+                   #middle
+                   {
+                     margin-top: 6px;
+                     border:0px solid #A569BD;
+                     width:100%;
+                     height:100px;
+                     text-align:center;
+                     border-radius:20px;
+                   }
+                 </style>
+            </head>
+           <body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDLpiNkppnUrm8xSc1PbXQpB41mEZm4ClQ",
+    authDomain: "test-v-8c12d.firebaseapp.com",
+    databaseURL: "https://test-v-8c12d.firebaseio.com",
+    projectId: "test-v-8c12d",
+    storageBucket: "test-v-8c12d.appspot.com",
+    messagingSenderId: "684344721207",
+    //appId: "1:684344721207:web:2127c1c646f81c4f7d64b2",
+    //measurementId: "G-4JJ251WX1J"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+                    <div id="middle">
+                      <h2> Welcome to IOT </h2>
+                     <h3>
+                       Dust_bin  :
+                       <span id="temp"  style="color:black;font-weight:bold">*****</span>
+                        cm
+                     </h3>
+                    </div>
+
+        <script>
+        var cur= document.getElementById("temp");
+        var db_refTemp = firebase.database().ref().child("Ultrasonic").child("distance");
+        db_refTemp.on("value", snap => {
+        cur.innerText = snap.val();
+        if (cur.innerText >=7)
+        {
+              document.getElementById("middle").style.backgroundColor = "#85E314";
+           }
+       if (cur.innerText <=6)
+        {
+              document.getElementById("middle").style.backgroundColor = "#ED380F";
+        //"Security problem";
+           }
+          });
+        </script>
+            </body>
+</html>
